@@ -1,8 +1,10 @@
 <template>
     <div>
         <navbar/>
-        <Nuxt />
-        esto es un footer
+        <div class="container-fluid">
+            <Nuxt />
+        </div>
+        
     </div>
 </template>
 

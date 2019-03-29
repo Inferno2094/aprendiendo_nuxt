@@ -24,7 +24,7 @@ export default {
     components: {navbar},
     data(){
         return{
-            msg: "Holi",
+            msg: "Esteban",
             municipios: ['Mocoa', 'Villa', 'Puerto']
         };
     },
