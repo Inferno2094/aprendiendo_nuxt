@@ -8,6 +8,13 @@ var config = {
     storageBucket: "nxut-50586.appspot.com",
     messagingSenderId: "1021053836954"
   };
-  firebase.initializeApp(config);
+
+  if(!firebase.apps.length){
+    firebase.initializeApp(config);
+  }
+  const db = firebase.firestore()
 
   export default firebase
+  export {
+    db
+  }

@@ -18,8 +18,6 @@
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
-
-        
     </b-navbar>
 </template>
 
