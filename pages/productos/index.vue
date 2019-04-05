@@ -1,4 +1,5 @@
 <template>
+    <div class="overflow-auto">
     <div class="row mt-3">
         <div class="col-sm-6">
             <h2>listado de productos</h2>
@@ -12,6 +13,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
