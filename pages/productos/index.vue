@@ -9,7 +9,12 @@
             </div>
             <div class="row mt-2">
                 <div class="col-sm-12">
-                    <b-table id="productos" responsive striped hover :fields="fields" :items="productos" :per-page="perPage" :current-page="currentPage" small/>
+                    <b-table id="productos" responsive striped hover :fields="fields" :items="productos" :per-page="perPage" :current-page="currentPage" small>
+                        <template slot="acciones">
+                            <b-button variant="success">Editar</b-button>
+                            <b-button variant="danger">Eliminar</b-button>
+                        </template>
+                    </b-table>
                     <b-pagination
                         v-model="currentPage"
                         :total-rows="rows"
@@ -61,6 +66,11 @@ export default {
     computed: {
         rows(){
             return this.productos.length
+        }
+    },
+    methods: {
+        eliminarProductos(){
+            db.collection('productos').delete(id)
         }
     }
 }
