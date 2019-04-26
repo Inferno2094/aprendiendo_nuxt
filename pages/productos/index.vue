@@ -24,22 +24,6 @@
                 </div>
             </div>
         </div>
-        <!--<b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" class="mt-4">
-            <span class="text-success" slot="first-text">Inicio</span>
-            <span class="text-danger" slot="prev-text">Ant.</span>
-            <span class="text-warning" slot="next-text">Sig.</span>
-            <span class="text-info" slot="last-text">Ultima</span>
-            <div slot="ellipsis-text">
-                <b-spinner small type="grow"></b-spinner>
-                <b-spinner small type="grow"></b-spinner>
-                <b-spinner small type="grow"></b-spinner>
-            </div>
-            <span slot="page" slot-scope="{ page, active }">
-                <b v-if="active">{{ page }}</b>
-                <i v-else>{{ page }}</i>
-            </span>
-        </b-pagination> -->
-    <!--</div>-->
 </template>
 
 <script>
