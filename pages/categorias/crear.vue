@@ -23,6 +23,7 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
+            <br>  
             <b-button v-if="guardado" type="submit" variant="primary">Guardar</b-button>
             <b-spinner v-if="guardando" label="Loading..."></b-spinner>
           </div>
@@ -63,20 +64,20 @@ export default {
 </script>
 
 <style>
-  body, html {
-    height: 100%;
-  }
-  .bg {
-    /* The image used */
-    background-image: url("https://st3.depositphotos.com/1049573/15331/v/1600/depositphotos_153312080-stock-illustration-white-abstract-geometric-seamless-pattern.jpg");
+body,
+html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://st3.depositphotos.com/1049573/15331/v/1600/depositphotos_153312080-stock-illustration-white-abstract-geometric-seamless-pattern.jpg");
 
-    /* Half height */
-    height: 50%;
+  /* Half height */
+  height: 50%;
 
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

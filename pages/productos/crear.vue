@@ -9,16 +9,9 @@
       <form name="frmdatos" @submit.prevent="guerdarProducto">
         <div class="row">
           <div class="col-sm-12">
-            <div class="form-group">
-              <label for="imagen">IMAGEN</label>
-              <input
-                type="file"
-                class="form-control"
-                placeholder="Carga Una Imagen"
-                name="imagen"
-                id="imagen"
-              >
-            </div>
+            <b-form-group label="imagen: " label-for="imagen">
+              <b-form-file placeholder="Cargar imagen" accept="image/*" v-model="imageProduct"/>
+            </b-form-group>
             <div class="form-group">
               <label for="nombre">Nombre del Producto:</label>
               <input
@@ -55,6 +48,9 @@
                 id="cantidad"
               >
             </div>
+            <b-form-goup label="Categoria" label-for="categoria">
+              <b-form-select id="categoria" v-model="form.categoria" :options="categorias"></b-form-select>
+            </b-form-goup>
           </div>
         </div>
         <div class="row">
@@ -69,9 +65,25 @@
 </template>
 
 <script>
-import { db } from "../../services/firebase";
+import { db, storage } from "../../services/firebase";
+import { async } from "q";
 
 export default {
+  asyncData() {
+    return db
+      .collection("categorias")
+      .get()
+      .then(categoriasSnap => {
+        let categorias = [];
+
+        categoriasSnap.forEach(value => {
+          categorias.push(value.data().categoria);
+        });
+        return {
+          categorias
+        };
+      });
+  },
   data() {
     return {
       form: {
@@ -81,40 +93,46 @@ export default {
       },
 
       guardado: true,
-      guardando: false
+      guardando: false,
+      imageProduct: ""
     };
   },
   methods: {
     guerdarProducto() {
       this.guardado = false;
       this.guardando = true;
-      db.collection("productos")
-        .add(this.form)
-        .then(res => {
-          this.$router.push({
-            path: "/productos"
+      let imageRef = storage.child(this.imageProduct.name);
+      imageRef.put(this.imageProduct).then(async imageRes => {
+        this.form.imagen = await imageRes.ref.getDownloadURL();
+
+        db.collection("productos")
+          .add(this.form)
+          .then(res => {
+            this.$router.push({
+              path: "/productos"
+            });
           });
-        });
+      });
     }
   }
 };
 </script>
 
 <style>
-  body, html {
-    height: 100%;
-  }
-  .bg {
-    /* The image used */
-    background-image: url("https://st3.depositphotos.com/1049573/15331/v/1600/depositphotos_153312080-stock-illustration-white-abstract-geometric-seamless-pattern.jpg");
+body,
+html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://st3.depositphotos.com/1049573/15331/v/1600/depositphotos_153312080-stock-illustration-white-abstract-geometric-seamless-pattern.jpg");
 
-    /* Half height */
-    height: 50%;
+  /* Half height */
+  height: 50%;
 
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

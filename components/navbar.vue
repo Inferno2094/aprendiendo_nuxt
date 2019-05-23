@@ -54,6 +54,7 @@
               <em>Usuario</em>
             </template>
             <b-dropdown-item href="#">Perfil</b-dropdown-item>
+            <b-dropdown-item href="/registro">Registrar</b-dropdown-item>
             <b-dropdown-item href="#">Cerrar Sesion</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
