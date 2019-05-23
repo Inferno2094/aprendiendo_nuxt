@@ -64,7 +64,14 @@ export default {
     methods:{
         registro(){
             auth.createUserWithEmailAndPassword(this.form.email, this.form.password).then(res => {
-                alert("Registro Excitante!")
+                res.user.updateProfile({
+                  displayName: this.form.name,
+                }).then(resUpdate =>{
+                  this.$router.push({
+                  path: "/"
+                })
+                })
+                
             }).catch(error =>{
                 alert("Pailas men, hay un erros: " + error.message)
             })
